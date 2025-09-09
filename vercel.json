@@ -6,9 +6,9 @@
             "use" : "@vercel/python"
         }
     ],
-    "routers": [
+    "routes": [
         {
-            "src": "/(*)",
+            "src": "/(.*)",
             "dest" : "VercelDeploy/wsgi.py"
         }
     ]
