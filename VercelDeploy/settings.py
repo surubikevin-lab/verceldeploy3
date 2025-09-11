@@ -77,8 +77,13 @@ WSGI_APPLICATION = 'VercelDeploy.wsgi.app'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Productos',
+        'USER': 'postgres',
+        'PASSWORD': '11324499',
+        'HOSTS': 'localhosts',
+        'PORT': '5432',
+
     }
 }
 

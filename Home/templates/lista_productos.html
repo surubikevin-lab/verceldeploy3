@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Registrados</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: linear-gradient(to right, #a8e063, #56ab2f); padding: 30px; }
+        .producto-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .producto-item { background: #f5f5f5; padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .producto-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+        .producto-item h4 { margin: 0 0 5px 0; color: #333; }
+        .producto-item p { margin: 2px 0; color: #555; }
+        .producto-item a { display: block; margin-top: 10px; text-align: center; padding: 8px; border-radius: 6px; color: white; text-decoration: none; font-weight: bold; }
+        .btn-edit { background: #28a745; }
+        .btn-edit:hover { background: #218838; }
+        .btn-delete { background: #dc3545; }
+        .btn-delete:hover { background: #c82333; }
+        h2 { text-align: center; color: red; margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+    <h2>Productos Registrados</h2>
+    <div class="producto-list">
+        {% for producto in productos %}
+            <div class="producto-item">
+                <h4>{{ producto.nombre }}</h4>
+                <p>Precio: ${{ producto.precio }}</p>
+                <p>{{ producto.descripcion }}</p>
+                <a href="{% url 'editar_producto' producto.pk %}" class="btn-edit">Editar Producto</a>
+                <a href="{% url 'eliminar_producto' producto.pk %}" class="btn-delete">Eliminar Producto</a>
+            </div>
+        {% empty %}
+            <p style="color:white; text-align:center; grid-column:1/-1;">No hay productos registrados aún.</p>
+        {% endfor %}
+    </div>
+    <br>
+    <a href="{% url 'inicio' %}">⬅ Volver al inicio</a>
+</body>
+</html>

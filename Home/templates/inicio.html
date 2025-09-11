@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #a8e063, #56ab2f);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        h1 {
+            color: red;
+            margin-bottom: 40px;
+        }
+        .btn {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-agregar { background: #28a745; }
+        .btn-agregar:hover { background: #218838; }
+        .btn-listar { background: #007bff; }
+        .btn-listar:hover { background: #0069d9; }
+    </style>
+</head>
+<body>
+    <h1>Registro de Productos</h1>
+    <a href="{% url 'agregar_producto' %}" class="btn btn-agregar">Agregar Nuevo Producto</a>
+    <a href="{% url 'lista_productos' %}" class="btn btn-listar">Productos Registrados</a>
+</body>
+</html>
+
