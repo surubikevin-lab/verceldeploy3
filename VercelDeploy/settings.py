@@ -64,13 +64,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'VercelDeploy.wsgi.application'
 
 # Database: SQLite local / Postgres producción
-DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",  # fallback SQLite
-        conn_max_age=600,
-        ssl_require=os.environ.get("DATABASE_URL") is not None  # SSL solo en Neon
-    )
-}
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+else:
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=os.environ.get("DATABASE_URL"),
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
 
 # Password validators
 AUTH_PASSWORD_VALIDATORS = [
