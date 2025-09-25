@@ -103,3 +103,11 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración específica para Vercel
+import os
+if os.environ.get('VERCEL'):
+    # Configuración para producción en Vercel
+    DEBUG = False
+    # Asegúrate de que tu dominio de Vercel esté en ALLOWED_HOSTS
+    ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
