@@ -3,13 +3,17 @@
     "builds": [
         {
             "src": "VercelDeploy/wsgi.py",
-            "use" : "@vercel/python"
+            "use": "@vercel/python"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest" : "VercelDeploy/wsgi.py"
+            "dest": "VercelDeploy/wsgi.py"
         }
-    ]
+    ],
+    "env": {
+        "DEBUG": "False",
+        "SECRET_KEY": "tu-secret-key-aqui"
+    }
 }

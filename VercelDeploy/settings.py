@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import dj_database_url
 
+
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -63,23 +64,19 @@ TEMPLATES = [
 # WSGI
 WSGI_APPLICATION = 'VercelDeploy.wsgi.application'
 
-# Database: SQLite local / Postgres producción
-if DEBUG:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
-else:
-    DATABASES = {
-        "default": dj_database_url.config(
-            default=os.environ.get("DATABASE_URL"),
-            conn_max_age=600,
-            ssl_require=True
-        )
-    }
 
+# Usar DATABASE_URL siempre que exista
+DATABASES = {
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3',  # Fallback para desarrollo
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
+
+# Forzar PostgreSQL si estamos en Vercel
+if os.environ.get('VERCEL'):
+    DATABASES['default'] = dj_database_url.parse(os.environ.get('DATABASE_URL'))
 # Password validators
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
