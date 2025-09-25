@@ -11,5 +11,7 @@
             "src": "/(.*)",
             "dest": "VercelDeploy/wsgi.py"
         }
-    ]
+    ],
+    "buildCommand": "bash vercel-build.sh",
+    "outputDirectory": "."
 }
