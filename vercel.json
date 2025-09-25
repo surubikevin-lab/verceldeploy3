@@ -12,6 +12,6 @@
             "dest": "VercelDeploy/wsgi.py"
         }
     ],
-    "buildCommand": "bash vercel-build.sh",
-    "outputDirectory": "."
+    "buildCommand": "python manage.py migrate --no-input && python manage.py create_superuser.py",
+    "installCommand": "pip install -r requirements.txt"
 }
